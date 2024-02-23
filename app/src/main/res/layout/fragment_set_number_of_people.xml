@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="setNumberOfPeopleFragmentViewModel"
+            type="com.example.settleaccounts.view_model.SetNumberOfPeopleViewModel" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragment.SetNumberOfPeopleFragment"
+        android:weightSum="6"
+        android:orientation="vertical"
+        android:background="#ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center|bottom">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_number_of_people_layout"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:text="-"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:onClick="@{() -> setNumberOfPeopleFragmentViewModel.subtractPeople()}"/>
+
+                <TextView
+                    android:id="@+id/number_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{Integer.toString(setNumberOfPeopleFragmentViewModel.numberOfPeople)}"
+                    android:textSize="36sp"
+                    android:layout_marginStart="50sp"
+                    android:layout_marginEnd="50sp" />
+
+                <TextView
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:text="+"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:onClick="@{() -> setNumberOfPeopleFragmentViewModel.addPeople()}"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.5">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_main_button"
+                android:text="인원 설정 완료"
+                android:textSize="24sp"
+                android:textColor="#ffffff"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>
