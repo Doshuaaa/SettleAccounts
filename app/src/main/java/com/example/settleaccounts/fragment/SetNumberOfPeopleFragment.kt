@@ -5,11 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.settleaccounts.R
+import com.example.settleaccounts.adapter.PeopleEditAdapter
 import com.example.settleaccounts.databinding.FragmentSetNumberOfPeopleBinding
+import com.example.settleaccounts.view_model.PeopleEditViewModel
 import com.example.settleaccounts.view_model.SetNumberOfPeopleViewModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,7 +35,7 @@ class SetNumberOfPeopleFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var binding: FragmentSetNumberOfPeopleBinding
-    private val viewModel by viewModels<SetNumberOfPeopleViewModel>()
+    private val viewModel: SetNumberOfPeopleViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,15 +50,35 @@ class SetNumberOfPeopleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_set_number_of_people, container, false)
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.setNumberOfPeopleFragmentViewModel = viewModel
+        binding = FragmentSetNumberOfPeopleBinding.inflate(inflater, container, false)
 
-//        val numberObserver = Observer<Int> {number ->
-//            binding.numberTextView.text = number.toString()
-//        }
-//        viewModel.numberOfPeople.observe(viewLifecycleOwner, numberObserver)
+
+        var toast: Toast? = null
+
+        viewModel.toastMessage.observe(viewLifecycleOwner, Observer { message ->
+
+            toast?.cancel()
+            toast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
+            toast?.show()
+        })
+
+        viewModel.numberOfPeople.observe(viewLifecycleOwner, Observer { peopleNum ->
+
+        })
+
+
+        binding.setNumberOfPeopleFragmentViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.activity = this
+
         return binding.root
+    }
+
+    fun goToNextPage() {
+        activity?.supportFragmentManager?.commit {
+            replace(R.id.settle_frame_layout, EditPeopleNameFragment())
+            addToBackStack("")
+        }
     }
 
     companion object {

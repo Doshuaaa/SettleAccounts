@@ -1,42 +1,45 @@
 package com.example.settleaccounts.view_model
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.settleaccounts.model.People
 
 class SetNumberOfPeopleViewModel : ViewModel() {
 
-    val numberOfPeople = MutableLiveData<Int>()
-//    private val _peopleListLiveData = MutableLiveData<List<People>>()
-//
-//    val peopleListLiveData : LiveData<List<People>> get() = _peopleListLiveData
-//
-//    val peopleList = mutableListOf<People>()
+    private val _numberOfPeople = MutableLiveData<Int>()
+    private val _toastMessage = MutableLiveData<String>()
+    private val _calFlag = MutableLiveData<String>()
+
+    val numberOfPeople: LiveData<Int> get() = _numberOfPeople
+    val toastMessage: LiveData<String> get() =  _toastMessage
+    val calFlag: LiveData<String> get() = _calFlag
 
     init {
-        numberOfPeople.value = 0
+
+        _numberOfPeople.value = 0
+        _calFlag.value = "zero"
     }
 
     fun addPeople() {
 
-        if(numberOfPeople.value!! < 10) {
-            numberOfPeople.value = numberOfPeople.value?.plus(1)
-
+        if(_numberOfPeople.value!! < 20) {
+            _calFlag.value = "add"
+            _numberOfPeople.value = _numberOfPeople.value?.plus(1)
         }
         else {
-           //toast
+            _toastMessage.value = "인원 수는 20명까지 입력 가능해요"
         }
     }
 
     fun subtractPeople() {
 
-        if(numberOfPeople.value!! > 0) {
-            numberOfPeople.value = numberOfPeople.value?.minus(1)
-
+        if(_numberOfPeople.value!! > 0) {
+            _calFlag.value = "subtract"
+            _numberOfPeople.value = _numberOfPeople.value?.minus(1)
         }
         else {
-            //toast
+            _toastMessage.value = "인원 수를 0명 이상 입력 해주세요"
         }
     }
 }

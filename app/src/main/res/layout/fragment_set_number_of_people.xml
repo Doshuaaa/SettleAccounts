@@ -9,6 +9,9 @@
         <variable
             name="setNumberOfPeopleFragmentViewModel"
             type="com.example.settleaccounts.view_model.SetNumberOfPeopleViewModel" />
+        <variable
+            name="activity"
+            type="com.example.settleaccounts.fragment.SetNumberOfPeopleFragment" />
     </data>
 
 
@@ -16,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragment.SetNumberOfPeopleFragment"
-        android:weightSum="6"
+
         android:orientation="vertical"
         android:background="#ffffff">
 
@@ -24,7 +27,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center|bottom">
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="인원 수를 설정해주세요"
+                android:textSize="24sp"
+                android:layout_marginBottom="15dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -44,7 +55,7 @@
                     android:id="@+id/number_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{Integer.toString(setNumberOfPeopleFragmentViewModel.numberOfPeople)}"
+                    android:text="@{String.valueOf(setNumberOfPeopleFragmentViewModel.numberOfPeople)}"
                     android:textSize="36sp"
                     android:layout_marginStart="50sp"
                     android:layout_marginEnd="50sp" />
@@ -62,27 +73,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4.5">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5">
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_main_button"
-                android:text="인원 설정 완료"
+                android:text="인원 수 설정 완료"
                 android:textSize="24sp"
-                android:textColor="#ffffff"/>
+                android:padding="20dp"
+                android:textColor="#ffffff"
+                android:onClick="@{() -> activity.goToNextPage()}"/>
 
         </LinearLayout>
 
