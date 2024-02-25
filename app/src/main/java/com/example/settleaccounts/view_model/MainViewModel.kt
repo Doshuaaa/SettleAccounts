@@ -6,19 +6,5 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel() : ViewModel() {
 
-    private val _openCreateBuildingEvent = MutableLiveData<Unit>()
-    val openCreateBuildingEvent: LiveData<Unit> get() = _openCreateBuildingEvent
-
-    init {
-        loadListBuildingDate()
-    }
-
-    private fun loadListBuildingDate() {
-
-    }
-
-    fun goToSettle() {
-
-    }
 
 }

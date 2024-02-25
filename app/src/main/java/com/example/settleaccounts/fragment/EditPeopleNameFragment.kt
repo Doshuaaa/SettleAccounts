@@ -10,7 +10,9 @@ import androidx.lifecycle.Observer
 import com.example.settleaccounts.R
 import com.example.settleaccounts.databinding.FragmentEditPeopleNameBinding
 import com.example.settleaccounts.view_model.EditPeopleNameViewModel
+import com.example.settleaccounts.view_model.PeopleDataViewModel
 import com.example.settleaccounts.view_model.SetNumberOfPeopleViewModel
+import com.google.android.material.textfield.TextInputEditText
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,6 +32,9 @@ class EditPeopleNameFragment : Fragment() {
     private lateinit var binding: FragmentEditPeopleNameBinding
     private val editNameViewModel: EditPeopleNameViewModel by activityViewModels()
     private val setNumberViewModel: SetNumberOfPeopleViewModel by activityViewModels()
+    private val peopleDataViewModel: PeopleDataViewModel by activityViewModels()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +54,32 @@ class EditPeopleNameFragment : Fragment() {
 
         editNameViewModel.setEditTextVisibility(setNumberViewModel.numberOfPeople.value!!)
 
+        binding.nameSetCompleteButton.setOnClickListener {
+            val editTextList = setEditTextList()
+            val count = setNumberViewModel.numberOfPeople.value
+            for(i in 0..< count!!) {
+                peopleDataViewModel.addPerson(editTextList[i].text.toString())
+            }
+            peopleDataViewModel.confirmPeopleList()
+        }
+
         return binding.root
+    }
+
+    private fun setEditTextList(): List<TextInputEditText> {
+
+        return listOf(
+            binding.peopleEditTextView1, binding.peopleEditTextView2,
+            binding.peopleEditTextView3, binding.peopleEditTextView4,
+            binding.peopleEditTextView5, binding.peopleEditTextView6,
+            binding.peopleEditTextView7, binding.peopleEditTextView8,
+            binding.peopleEditTextView9, binding.peopleEditTextView10,
+            binding.peopleEditTextView11, binding.peopleEditTextView12,
+            binding.peopleEditTextView13, binding.peopleEditTextView14,
+            binding.peopleEditTextView15, binding.peopleEditTextView16,
+            binding.peopleEditTextView17, binding.peopleEditTextView18,
+            binding.peopleEditTextView19, binding.peopleEditTextView20,
+        )
     }
 
     companion object {

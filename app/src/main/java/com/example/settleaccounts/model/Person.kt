@@ -1,6 +1,6 @@
 package com.example.settleaccounts.model
 
-data class People(
+data class Person(
     val name: String,
     val money: Int
 )
