@@ -1,14 +1,342 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.EditPeopleNameFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="editPeopleNameViewModel"
+            type="com.example.settleaccounts.view_model.EditPeopleNameViewModel" />
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[0]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[1]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[2]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[3]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[4]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[5]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[6]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view7"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[7]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view8"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[8]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view9"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[9]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view10"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[10]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view11"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[11]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view12"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[12]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view13"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[13]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view14"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[14]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view15"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[15]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view16"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[16]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view17"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[17]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view18"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[18]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view19"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="240dp"
+                    android:layout_height="60dp"
+                    android:hint="@string/name"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:visibility="@{editPeopleNameViewModel.visibleList[19]}">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/people_edit_text_view20"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_main_button"
+            android:text="인원 이름 설정 완료"
+            android:textSize="24sp"
+            android:padding="20dp"
+            android:textColor="#ffffff"
+            android:onClick="@null"/>
+
+    </LinearLayout>
+</layout>

@@ -5,7 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.example.settleaccounts.R
+import com.example.settleaccounts.databinding.FragmentEditPeopleNameBinding
+import com.example.settleaccounts.view_model.EditPeopleNameViewModel
+import com.example.settleaccounts.view_model.SetNumberOfPeopleViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +27,10 @@ class EditPeopleNameFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var binding: FragmentEditPeopleNameBinding
+    private val editNameViewModel: EditPeopleNameViewModel by activityViewModels()
+    private val setNumberViewModel: SetNumberOfPeopleViewModel by activityViewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -33,9 +42,14 @@ class EditPeopleNameFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_people_name, container, false)
+    ): View {
+
+        binding = FragmentEditPeopleNameBinding.inflate(inflater, container, false)
+        binding.editPeopleNameViewModel = editNameViewModel
+
+        editNameViewModel.setEditTextVisibility(setNumberViewModel.numberOfPeople.value!!)
+
+        return binding.root
     }
 
     companion object {

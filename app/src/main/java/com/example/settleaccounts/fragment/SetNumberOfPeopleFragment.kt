@@ -6,17 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.settleaccounts.R
-import com.example.settleaccounts.adapter.PeopleEditAdapter
 import com.example.settleaccounts.databinding.FragmentSetNumberOfPeopleBinding
-import com.example.settleaccounts.view_model.PeopleEditViewModel
 import com.example.settleaccounts.view_model.SetNumberOfPeopleViewModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -65,7 +59,6 @@ class SetNumberOfPeopleFragment : Fragment() {
         viewModel.numberOfPeople.observe(viewLifecycleOwner, Observer { peopleNum ->
 
         })
-
 
         binding.setNumberOfPeopleFragmentViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
