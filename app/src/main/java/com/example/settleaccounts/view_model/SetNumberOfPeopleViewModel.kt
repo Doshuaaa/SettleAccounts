@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 class SetNumberOfPeopleViewModel : ViewModel() {
 
     private val _numberOfPeople = MutableLiveData<Int>()
-    private val _toastMessage = MutableLiveData<String>()
+    private var _toastMessage = MutableLiveData<String>()
 
     val numberOfPeople: LiveData<Int> get() = _numberOfPeople
     val toastMessage: LiveData<String> get() =  _toastMessage
@@ -36,5 +36,9 @@ class SetNumberOfPeopleViewModel : ViewModel() {
         else {
             _toastMessage.value = "인원 수를 0명 이상 입력 해주세요"
         }
+    }
+
+    fun setInitMessage() {
+        _toastMessage = MutableLiveData<String>()
     }
 }

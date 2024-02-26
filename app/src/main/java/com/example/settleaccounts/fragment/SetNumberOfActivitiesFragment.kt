@@ -10,8 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
 import com.example.settleaccounts.R
-import com.example.settleaccounts.databinding.FragmentSetNumberOfPeopleBinding
-import com.example.settleaccounts.view_model.SetNumberOfPeopleViewModel
+import com.example.settleaccounts.databinding.FragmentSetNumberOfActivitiesBinding
+import com.example.settleaccounts.view_model.SetNumberOfActivitiesViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,17 +20,16 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [SetNumberOfPeopleFragment.newInstance] factory method to
+ * Use the [SetNumberOfActivitiesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SetNumberOfPeopleFragment : Fragment() {
+class SetNumberOfActivitiesFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var binding: FragmentSetNumberOfPeopleBinding
-    private val viewModel: SetNumberOfPeopleViewModel by activityViewModels()
-
+    private lateinit var binding: FragmentSetNumberOfActivitiesBinding
+    private val viewModel: SetNumberOfActivitiesViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -44,8 +43,7 @@ class SetNumberOfPeopleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = FragmentSetNumberOfPeopleBinding.inflate(inflater, container, false)
-
+        binding = FragmentSetNumberOfActivitiesBinding.inflate(inflater, container, false)
 
         var toast: Toast? = null
 
@@ -56,21 +54,22 @@ class SetNumberOfPeopleFragment : Fragment() {
             toast?.show()
         })
 
-        viewModel.numberOfPeople.observe(viewLifecycleOwner, Observer { peopleNum ->
+//        viewModel.numberOfActivities.observe(viewLifecycleOwner, Observer { peopleNum ->
+//
+//        })
 
-        })
-
-        binding.setNumberOfPeopleFragmentViewModel = viewModel
+        binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.activity = this
+        binding.fragment = this
 
         return binding.root
     }
 
     fun goToNextPage() {
         activity?.supportFragmentManager?.commit {
+            viewModel.toastMessage.removeObservers(viewLifecycleOwner)
             viewModel.setInitMessage()
-            replace(R.id.settle_frame_layout, EditPeopleNameFragment())
+            replace(R.id.settle_frame_layout, EditActivitiesNameFragment())
             addToBackStack("")
         }
     }
@@ -82,12 +81,12 @@ class SetNumberOfPeopleFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment SetNumberOfPeopleFragment.
+         * @return A new instance of fragment SetNumberOfActivityFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SetNumberOfPeopleFragment().apply {
+            SetNumberOfActivitiesFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

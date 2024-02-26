@@ -6,6 +6,9 @@
             name="editPeopleNameViewModel"
             type="com.example.settleaccounts.view_model.EditPeopleNameViewModel" />
 
+        <variable
+            name="editPeopleNameFragment"
+            type="com.example.settleaccounts.fragment.EditPeopleNameFragment" />
     </data>
 
     <LinearLayout
@@ -325,7 +328,6 @@
 
             </LinearLayout>
 
-
         </ScrollView>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -337,7 +339,7 @@
             android:textSize="24sp"
             android:padding="20dp"
             android:textColor="#ffffff"
-            android:onClick="@null"/>
+            android:onClick="@{() -> editPeopleNameFragment.goToNextPage()}"/>
 
     </LinearLayout>
 </layout>

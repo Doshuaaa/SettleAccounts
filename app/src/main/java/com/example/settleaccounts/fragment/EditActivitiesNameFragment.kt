@@ -9,10 +9,10 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import com.example.settleaccounts.R
-import com.example.settleaccounts.databinding.FragmentEditPeopleNameBinding
-import com.example.settleaccounts.view_model.EditPeopleNameViewModel
+import com.example.settleaccounts.databinding.FragmentEditActivitiesNameBinding
+import com.example.settleaccounts.view_model.EditActivitiesNameViewModel
 import com.example.settleaccounts.view_model.PeopleAndActivitiesDataViewModel
-import com.example.settleaccounts.view_model.SetNumberOfPeopleViewModel
+import com.example.settleaccounts.view_model.SetNumberOfActivitiesViewModel
 import com.google.android.material.textfield.TextInputEditText
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,18 +22,18 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [EditPeopleNameFragment.newInstance] factory method to
+ * Use the [EditActivitiesNameFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class EditPeopleNameFragment : Fragment() {
+class EditActivitiesNameFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var binding: FragmentEditPeopleNameBinding
-    private val editNameViewModel: EditPeopleNameViewModel by activityViewModels()
-    private val setNumberViewModel: SetNumberOfPeopleViewModel by activityViewModels()
-    private val peopleDataViewModel: PeopleAndActivitiesDataViewModel by activityViewModels()
+    private lateinit var binding: FragmentEditActivitiesNameBinding
+    private val viewModel: EditActivitiesNameViewModel by activityViewModels()
+    private val editActivitiesNameViewModel: SetNumberOfActivitiesViewModel by activityViewModels()
+    private val activitiesDataViewModel: PeopleAndActivitiesDataViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +47,12 @@ class EditPeopleNameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        binding = FragmentEditActivitiesNameBinding.inflate(inflater, container, false)
 
-        binding = FragmentEditPeopleNameBinding.inflate(inflater, container, false)
-        binding.editPeopleNameViewModel = editNameViewModel
-        binding.editPeopleNameFragment = this
+        viewModel.setEditTextVisibility(editActivitiesNameViewModel.numberOfActivities.value!!)
 
-        editNameViewModel.setEditTextVisibility(setNumberViewModel.numberOfPeople.value!!)
+        binding.viewModel = viewModel
+        binding.fragment = this
 
         return binding.root
     }
@@ -65,24 +65,21 @@ class EditPeopleNameFragment : Fragment() {
             binding.peopleEditTextView5, binding.peopleEditTextView6,
             binding.peopleEditTextView7, binding.peopleEditTextView8,
             binding.peopleEditTextView9, binding.peopleEditTextView10,
-            binding.peopleEditTextView11, binding.peopleEditTextView12,
-            binding.peopleEditTextView13, binding.peopleEditTextView14,
-            binding.peopleEditTextView15, binding.peopleEditTextView16,
-            binding.peopleEditTextView17, binding.peopleEditTextView18,
-            binding.peopleEditTextView19, binding.peopleEditTextView20,
         )
     }
 
     fun goToNextPage() {
         val editTextList = setEditTextList()
-        val count = setNumberViewModel.numberOfPeople.value
+        val count = editActivitiesNameViewModel.numberOfActivities.value
         for(i in 0..< count!!) {
-            if(!peopleDataViewModel.addPerson(editTextList[i].text.toString())) {
+
+            /////
+            if(!activitiesDataViewModel.addActivity(editTextList[i].text.toString())) {
                 Toast.makeText(context, "이름이 같은 사람이 있어요", Toast.LENGTH_SHORT).show()
                 return
             }
         }
-        peopleDataViewModel.confirmPeopleMap()
+        activitiesDataViewModel.confirmActivitiesMap()
 
         activity?.supportFragmentManager?.commit {
             replace(R.id.settle_frame_layout, SetNumberOfActivitiesFragment())
@@ -97,12 +94,12 @@ class EditPeopleNameFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment EditPeopleNameFragment.
+         * @return A new instance of fragment EditActivitiesNameFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            EditPeopleNameFragment().apply {
+            EditActivitiesNameFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

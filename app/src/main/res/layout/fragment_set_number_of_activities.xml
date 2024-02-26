@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.settleaccounts.view_model.SetNumberOfActivitiesViewModel" />
+
+        <variable
+            name="fragment"
+            type="com.example.settleaccounts.fragment.SetNumberOfActivitiesFragment" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragment.SetNumberOfPeopleFragment"
+
+        android:orientation="vertical"
+        android:background="#ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="정산할 활동 수를 설정해주세요"
+                android:textSize="24sp"
+                android:layout_marginBottom="15dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_number_of_people_layout"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:text="-"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.subtractActivity()}"/>
+
+                <TextView
+                    android:id="@+id/number_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(viewModel.numberOfActivities)}"
+                    android:textSize="36sp"
+                    android:layout_marginStart="50sp"
+                    android:layout_marginEnd="50sp" />
+
+                <TextView
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:text="+"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:onClick="@{() -> viewModel.addActivity()}"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_main_button"
+                android:text="활동 수 설정 완료"
+                android:textSize="24sp"
+                android:padding="20dp"
+                android:textColor="#ffffff"
+                android:onClick="@{() -> fragment.goToNextPage()}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>
