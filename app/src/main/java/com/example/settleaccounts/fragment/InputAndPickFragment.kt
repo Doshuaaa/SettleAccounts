@@ -60,7 +60,7 @@ class InputAndPickFragment : Fragment() {
 
     fun goToNextPage() {
         activity?.supportFragmentManager?.commit {
-            replace(R.id.settle_frame_layout, ResultOfSettleAccountsFragment())
+            replace(R.id.settle_frame_layout, InputAccountNumberFragment())
             addToBackStack("")
         }
     }

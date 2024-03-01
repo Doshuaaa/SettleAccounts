@@ -5,10 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.settleaccounts.R
 import com.example.settleaccounts.adapter.ResultAdapter
 import com.example.settleaccounts.databinding.FragmentResultOfSettleAccountsBinding
+import com.example.settleaccounts.view_model.AccountDataViewModel
 import com.example.settleaccounts.view_model.PeopleAndActivitiesDataViewModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,7 +31,8 @@ class ResultOfSettleAccountsFragment : Fragment() {
     private var param2: String? = null
 
     lateinit var binding: FragmentResultOfSettleAccountsBinding
-    val dataViewModel: PeopleAndActivitiesDataViewModel by activityViewModels()
+    private val dataViewModel: PeopleAndActivitiesDataViewModel by activityViewModels()
+    val accountDataViewModel: AccountDataViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,12 +46,20 @@ class ResultOfSettleAccountsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentResultOfSettleAccountsBinding.inflate(layoutInflater, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_result_of_settle_accounts, container, false)
 
         binding.resultRecyclerView.apply {
             adapter = ResultAdapter(dataViewModel.peopleMap.value!!.toList())
             layoutManager = LinearLayoutManager(context)
         }
+
+        binding.accountViewModel = accountDataViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        val a = accountDataViewModel.account.value
+        val b = 3
+
+
         return binding.root
     }
 
