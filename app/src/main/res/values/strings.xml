@@ -6,4 +6,6 @@
     <string name="remove">삭제</string>
     <string name="name">이름</string>
     <string name="name_set_complete">인원 이름 설정 완료</string>
+    <string name="active_name_set_complete">활동 이름 설정 완료</string>
+    <string name="settle_accounts_button">정산하기</string>
 </resources>

@@ -72,17 +72,12 @@ class EditActivitiesNameFragment : Fragment() {
         val editTextList = setEditTextList()
         val count = editActivitiesNameViewModel.numberOfActivities.value
         for(i in 0..< count!!) {
-
-            /////
-            if(!activitiesDataViewModel.addActivity(editTextList[i].text.toString())) {
-                Toast.makeText(context, "이름이 같은 사람이 있어요", Toast.LENGTH_SHORT).show()
-                return
-            }
+            activitiesDataViewModel.addActivity(editTextList[i].text.toString())
         }
         activitiesDataViewModel.confirmActivitiesMap()
 
         activity?.supportFragmentManager?.commit {
-            replace(R.id.settle_frame_layout, SetNumberOfActivitiesFragment())
+            replace(R.id.settle_frame_layout, InputAndPickFragment())
             addToBackStack("")
         }
     }

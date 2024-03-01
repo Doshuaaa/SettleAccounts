@@ -2,22 +2,24 @@ package com.example.settleaccounts.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.settleaccounts.model.Activity
 
-class PeopleAndActivitiesDataViewModel: ViewModel() {
+open class PeopleAndActivitiesDataViewModel: ViewModel() {
 
-    private val _peopleMap = MutableLiveData<HashMap<String, Int>>()
+    private val _peopleMap = MutableLiveData<HashMap<String, Double>>()
+    private val _activityList = MutableLiveData<List<Activity>>()
 
-    private val _activitiesMap = MutableLiveData<HashMap<String, Int>>()
 
     val peopleMap get() = _peopleMap
-    val activitiesMap get() = _activitiesMap
+    val activityList get() = _activityList
 
-    private val tempPeopleMap: HashMap<String, Int> = hashMapOf()
-    private val tempActivitiesMap: HashMap<String, Int> = hashMapOf()
+
+    private val tempPeopleMap: HashMap<String, Double> = hashMapOf()
+    private val tempActivityList: ArrayList<Activity> = arrayListOf()
 
     fun addPerson(name: String): Boolean {
         if(!tempPeopleMap.contains(name)) {
-            tempPeopleMap[name] = 0
+            tempPeopleMap[name] = 0.0
         }
         else {
             clearTempPeopleMap()
@@ -27,7 +29,7 @@ class PeopleAndActivitiesDataViewModel: ViewModel() {
     }
 
     fun confirmPeopleMap() {
-        _peopleMap.value = tempPeopleMap
+        _peopleMap.value = HashMap<String, Double>().apply { putAll(tempPeopleMap) }
         tempPeopleMap.clear()
     }
 
@@ -35,23 +37,28 @@ class PeopleAndActivitiesDataViewModel: ViewModel() {
         tempPeopleMap.clear()
     }
 
-    fun addActivity(name: String): Boolean {
-        if(!tempActivitiesMap.contains(name)) {
-            tempActivitiesMap[name] = 0
-        }
-        else {
-            clearTempActivitiesMap()
-            return false
-        }
-        return true
+    fun addActivity(name: String) {
+        tempActivityList.add(Activity(name, 0, mutableListOf()))
     }
 
     fun confirmActivitiesMap() {
-        _activitiesMap.value = tempActivitiesMap
-        tempActivitiesMap.clear()
+        _activityList.value = tempActivityList.clone() as ArrayList<Activity>
+        tempActivityList.clear()
     }
 
-    private fun clearTempActivitiesMap() {
-        tempActivitiesMap.clear()
+    fun settleAccounts() {
+
+        val activityList = _activityList.value!!
+        val peopleCount = peopleMap.value!!.size
+
+        for(list in activityList) {
+
+            val money = list.money / peopleCount
+
+            for(peopleName in list.peopleList) {
+                val map = peopleMap.value!!
+                map[peopleName] = money + map[peopleName]!!
+            }
+        }
     }
 }
