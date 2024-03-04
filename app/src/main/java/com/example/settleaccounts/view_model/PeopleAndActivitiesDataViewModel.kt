@@ -33,8 +33,11 @@ open class PeopleAndActivitiesDataViewModel: ViewModel() {
         tempPeopleMap.clear()
     }
 
-    private fun clearTempPeopleMap() {
+    fun clearTempPeopleMap() {
         tempPeopleMap.clear()
+    }
+    fun clearTempActivityList() {
+        tempActivityList.clear()
     }
 
     fun addActivity(name: String) {

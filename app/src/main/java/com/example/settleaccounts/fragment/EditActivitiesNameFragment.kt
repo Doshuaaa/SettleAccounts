@@ -72,6 +72,13 @@ class EditActivitiesNameFragment : Fragment() {
         val editTextList = setEditTextList()
         val count = editActivitiesNameViewModel.numberOfActivities.value
         for(i in 0..< count!!) {
+
+            if(editTextList[i].text.toString() == "") {
+                Toast.makeText(context, "활동명을 모두 입력해주세요", Toast.LENGTH_SHORT).show()
+                activitiesDataViewModel.clearTempActivityList()
+                return
+            }
+
             activitiesDataViewModel.addActivity(editTextList[i].text.toString())
         }
         activitiesDataViewModel.confirmActivitiesMap()

@@ -77,6 +77,13 @@ class EditPeopleNameFragment : Fragment() {
         val editTextList = setEditTextList()
         val count = setNumberViewModel.numberOfPeople.value
         for(i in 0..< count!!) {
+
+            if(editTextList[i].text.toString() == "") {
+                Toast.makeText(context, "이름을 모두 입력해주세요", Toast.LENGTH_SHORT).show()
+                peopleDataViewModel.clearTempPeopleMap()
+                return
+            }
+
             if(!peopleDataViewModel.addPerson(editTextList[i].text.toString())) {
                 Toast.makeText(context, "이름이 같은 사람이 있어요", Toast.LENGTH_SHORT).show()
                 return
