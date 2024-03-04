@@ -56,9 +56,6 @@ class ResultOfSettleAccountsFragment : Fragment() {
         binding.accountViewModel = accountDataViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val a = accountDataViewModel.account.value
-        val b = 3
-
 
         return binding.root
     }

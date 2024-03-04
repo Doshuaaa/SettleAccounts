@@ -52,16 +52,25 @@ open class PeopleAndActivitiesDataViewModel: ViewModel() {
     fun settleAccounts() {
 
         val activityList = _activityList.value!!
-        val peopleCount = peopleMap.value!!.size
 
         for(list in activityList) {
 
-            val money = list.money / peopleCount
+            val money = list.money / list.peopleList.size
 
             for(peopleName in list.peopleList) {
                 val map = peopleMap.value!!
                 map[peopleName] = money + map[peopleName]!!
             }
         }
+    }
+
+    fun initMoney() {
+        val map = _peopleMap.value!!
+
+        for(name in map.keys) {
+            map[name] = 0.0
+        }
+
+
     }
 }

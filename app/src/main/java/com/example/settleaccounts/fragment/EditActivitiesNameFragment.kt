@@ -69,6 +69,7 @@ class EditActivitiesNameFragment : Fragment() {
     }
 
     fun goToNextPage() {
+        activitiesDataViewModel.clearTempActivityList()
         val editTextList = setEditTextList()
         val count = editActivitiesNameViewModel.numberOfActivities.value
         for(i in 0..< count!!) {

@@ -51,6 +51,7 @@ class InputAndPickFragment : Fragment() {
 
         binding.settleAccountsButton.setOnClickListener {
 
+            viewModel.initMoney()
             viewModel.settleAccounts()
             goToNextPage()
         }
