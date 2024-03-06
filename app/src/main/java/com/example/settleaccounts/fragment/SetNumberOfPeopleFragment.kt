@@ -68,10 +68,16 @@ class SetNumberOfPeopleFragment : Fragment() {
     }
 
     fun goToNextPage() {
-        activity?.supportFragmentManager?.commit {
-            viewModel.setInitMessage()
-            replace(R.id.settle_frame_layout, EditPeopleNameFragment())
-            addToBackStack("")
+
+        if(viewModel.numberOfPeople.value != 0) {
+            activity?.supportFragmentManager?.commit {
+                viewModel.setInitMessage()
+                replace(R.id.settle_frame_layout, EditPeopleNameFragment())
+                addToBackStack("")
+            }
+        }
+        else {
+            Toast.makeText(context, "인원 수가 0명일 수는 없어요", Toast.LENGTH_SHORT).show()
         }
     }
 

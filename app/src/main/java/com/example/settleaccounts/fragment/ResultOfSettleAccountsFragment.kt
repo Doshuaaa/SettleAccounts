@@ -31,7 +31,7 @@ class ResultOfSettleAccountsFragment : Fragment() {
     private var param2: String? = null
 
     lateinit var binding: FragmentResultOfSettleAccountsBinding
-    private val dataViewModel: PeopleAndActivitiesDataViewModel by activityViewModels()
+    val dataViewModel: PeopleAndActivitiesDataViewModel by activityViewModels()
     val accountDataViewModel: AccountDataViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,9 +53,12 @@ class ResultOfSettleAccountsFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
         }
 
-        binding.accountViewModel = accountDataViewModel
-        binding.lifecycleOwner = viewLifecycleOwner
-
+        binding.apply {
+            accountViewModel = accountDataViewModel
+            lifecycleOwner = viewLifecycleOwner
+            fragment = this@ResultOfSettleAccountsFragment
+            dataViewModel = dataViewModel
+        }
 
         return binding.root
     }

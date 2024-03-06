@@ -15,4 +15,7 @@ class AccountDataViewModel: ViewModel() {
 
         _account.value = Account(bankName, accountNumber)
     }
+    fun getMyAccount() : Account{
+        return _account.value!!
+    }
 }

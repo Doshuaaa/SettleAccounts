@@ -62,11 +62,16 @@ class SetNumberOfActivitiesFragment : Fragment() {
     }
 
     fun goToNextPage() {
-        activity?.supportFragmentManager?.commit {
-            viewModel.toastMessage.removeObservers(viewLifecycleOwner)
-            viewModel.setInitMessage()
-            replace(R.id.settle_frame_layout, EditActivitiesNameFragment())
-            addToBackStack("")
+        if(viewModel.numberOfActivities.value != 0) {
+            activity?.supportFragmentManager?.commit {
+                viewModel.toastMessage.removeObservers(viewLifecycleOwner)
+                viewModel.setInitMessage()
+                replace(R.id.settle_frame_layout, EditActivitiesNameFragment())
+                addToBackStack("")
+            }
+        }
+        else {
+            Toast.makeText(context, "활동 수가 0개일 수는 없어요", Toast.LENGTH_SHORT).show()
         }
     }
 
