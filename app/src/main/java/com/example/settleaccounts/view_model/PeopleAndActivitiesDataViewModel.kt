@@ -7,19 +7,40 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.settleaccounts.model.Account
 import com.example.settleaccounts.model.Activity
+import com.example.settleaccounts.model.PersonIsChecked
 
 open class PeopleAndActivitiesDataViewModel: ViewModel() {
 
     private val _peopleMap = MutableLiveData<HashMap<String, Double>>()
     private val _activityList = MutableLiveData<List<Activity>>()
 
+    private val _personIsCheckedMap = MutableLiveData<HashMap<String, PersonIsCheckedMap>>()
 
     val peopleMap get() = _peopleMap
     val activityList get() = _activityList
+    val personIsCheckedMap get() = _personIsCheckedMap
 
 
     private val tempPeopleMap: HashMap<String, Double> = hashMapOf()
     private val tempActivityList: ArrayList<Activity> = arrayListOf()
+
+
+    fun setPersonIsCheckedMap() {
+
+        val hashMap: HashMap<String, PersonIsCheckedMap> = hashMapOf()
+        val map: HashMap<String, Boolean> = hashMapOf()
+
+        for(person in _peopleMap.value?.toList()!!) {
+            map[person.first] = false
+        }
+
+        val list = _activityList.value!!
+        for(activity in list) {
+            hashMap[activity.name] = PersonIsCheckedMap(map.clone() as HashMap<String, Boolean>)
+        }
+
+        _personIsCheckedMap.value = hashMap
+    }
 
     fun addPerson(name: String): Boolean {
         if(!tempPeopleMap.contains(name)) {

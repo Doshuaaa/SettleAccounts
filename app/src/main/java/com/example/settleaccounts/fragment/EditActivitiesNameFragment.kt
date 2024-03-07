@@ -82,7 +82,10 @@ class EditActivitiesNameFragment : Fragment() {
 
             activitiesDataViewModel.addActivity(editTextList[i].text.toString())
         }
-        activitiesDataViewModel.confirmActivitiesMap()
+        activitiesDataViewModel.apply {
+            confirmActivitiesMap()
+            setPersonIsCheckedMap()
+        }
 
         activity?.supportFragmentManager?.commit {
             replace(R.id.settle_frame_layout, InputAndPickFragment())

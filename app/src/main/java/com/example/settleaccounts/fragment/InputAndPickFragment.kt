@@ -30,6 +30,7 @@ class InputAndPickFragment : Fragment() {
 
     lateinit var binding: FragmentInputAndPickBinding
     val viewModel: PeopleAndActivitiesDataViewModel by activityViewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -42,10 +43,13 @@ class InputAndPickFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        val isCheckedMap = viewModel.personIsCheckedMap.value
         binding = FragmentInputAndPickBinding.inflate(layoutInflater, container, false)
 
         binding.activityRecyclerView.apply {
-            adapter = ActivityAdapter(viewModel.activityList, viewModel.peopleMap, this@InputAndPickFragment)
+            adapter = ActivityAdapter(viewModel.activityList, viewModel.peopleMap,
+                isCheckedMap, this@InputAndPickFragment)
             layoutManager = LinearLayoutManager(context)
         }
 
@@ -53,6 +57,7 @@ class InputAndPickFragment : Fragment() {
 
             viewModel.initMoney()
             viewModel.settleAccounts()
+            viewModel.personIsCheckedMap.value = isCheckedMap
             goToNextPage()
         }
 

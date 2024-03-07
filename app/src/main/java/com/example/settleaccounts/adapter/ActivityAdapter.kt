@@ -9,15 +9,18 @@ import com.example.settleaccounts.databinding.ViewHolderActivityBinding
 import com.example.settleaccounts.dialog.SetPeopleAndPriceDialog
 import com.example.settleaccounts.fragment.InputAndPickFragment
 import com.example.settleaccounts.model.Activity
+import com.example.settleaccounts.view_model.PersonIsCheckedMap
 
 class ActivityAdapter(
     activityLiveData: MutableLiveData<List<Activity>>,
     private val peopleLiveData: MutableLiveData<HashMap<String, Double>>,
+    private val personIsCheckedMap: HashMap<String, PersonIsCheckedMap>?,
     private val fragment: InputAndPickFragment)
     : RecyclerView.Adapter<ActivityAdapter.ViewHolder>()  {
 
 
     val activityList = activityLiveData.value!!
+    val peopleList = peopleLiveData.value?.toList()!!
 
     inner class ViewHolder(val binding: ViewHolderActivityBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -30,8 +33,14 @@ class ActivityAdapter(
 
             setItemImage()
 
+//            val peopleSelectedArray: Array<PersonIsChecked> = Array(peopleList.size) {
+//                PersonIsChecked(peopleList[it].first, false)
+//            }
+
             binding.activityLinearLayout.setOnClickListener {
-                SetPeopleAndPriceDialog(peopleLiveData, activityList[position], fragment, this).show()
+                if (personIsCheckedMap != null) {
+                    SetPeopleAndPriceDialog(peopleLiveData, personIsCheckedMap, activityList[position], fragment, this).show()
+                }
             }
         }
 
