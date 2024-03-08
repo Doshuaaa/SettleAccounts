@@ -74,19 +74,24 @@ open class PeopleAndActivitiesDataViewModel: ViewModel() {
         tempActivityList.clear()
     }
 
-    fun settleAccounts() {
+    fun settleAccounts() : Boolean {
 
         val activityList = _activityList.value!!
 
         for(list in activityList) {
 
-            val money = list.money / list.peopleList.size
+            if(list.money != 0) {
+                val money = list.money / list.peopleList.size
 
-            for(peopleName in list.peopleList) {
-                val map = peopleMap.value!!
-                map[peopleName] = money + map[peopleName]!!
+                for(peopleName in list.peopleList) {
+                    val map = peopleMap.value!!
+                    map[peopleName] = money + map[peopleName]!!
+                }
+            } else {
+                return false
             }
         }
+        return true
     }
 
     fun initMoney() {

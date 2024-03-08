@@ -17,6 +17,10 @@ import com.example.settleaccounts.fragment.InputAndPickFragment
 import com.example.settleaccounts.model.Activity
 import com.example.settleaccounts.view_model.PersonIsCheckedMap
 
+object AllSelect {
+    var flag = false
+}
+
 class SetPeopleAndPriceDialog(
     private val peopleLiveData: MutableLiveData<HashMap<String, Double>>,
     private val personIsCheckedMap: HashMap<String, PersonIsCheckedMap>,
@@ -54,25 +58,44 @@ class SetPeopleAndPriceDialog(
             layoutManager = GridLayoutManager(fragment.requireContext(), 3)
         }
 
-        binding.selectAllCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
-
-            val isCheckedMap = personIsCheckedMap[selectedActivity.name]!!
-            val list = isCheckedMap.map.toList()
-
-            for( person in list) {
-
-                isCheckedMap.map[person.first] = isChecked
-            }
-
+        binding.selectAllCheckBox.setOnClickListener {
+            //AllSelect.flag = true
+            peopleAdapter.setAllSelect()
             peopleAdapter.notifyDataSetChanged()
+//            binding.peopleRecyclerView.post(Runnable {
+//                AllSelect.flag = false
+//            })
         }
+
+//        binding.selectAllCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
+//
+//            val isCheckedMap = personIsCheckedMap[selectedActivity.name]!!
+//            val list = isCheckedMap.map.toList()
+//
+//            for( person in list) {
+//
+//                isCheckedMap.map[person.first] = isChecked
+//            }
+//
+//            peopleAdapter.notifyDataSetChanged()
+//        }
         dlg.show()
     }
 
     fun completeSet() {
-        if(binding.priceEditText.text.toString() != "") {
-            peopleAdapter.setSelectedActivity()
+
+
+
+        if(binding.priceEditText.text.toString() != "" ) {
+
+            val list = peopleAdapter.setSelectedActivity()
+            if(list.size == 0) {
+                Toast.makeText(fragment.context, "인원을 1명 이상 선택해 주세요", Toast.LENGTH_SHORT).show()
+                return
+            }
+            selectedActivity.peopleList = list
             setSelectedActivity()
+
             dlg.dismiss()
         }
         else {

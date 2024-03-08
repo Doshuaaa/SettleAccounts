@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,25 +47,25 @@ class InputAndPickFragment : Fragment() {
 
         val isCheckedMap = viewModel.personIsCheckedMap.value
         binding = FragmentInputAndPickBinding.inflate(layoutInflater, container, false)
-
+        binding.fragment = this
         binding.activityRecyclerView.apply {
             adapter = ActivityAdapter(viewModel.activityList, viewModel.peopleMap,
                 isCheckedMap, this@InputAndPickFragment)
             layoutManager = LinearLayoutManager(context)
         }
 
-        binding.settleAccountsButton.setOnClickListener {
-
-            viewModel.initMoney()
-            viewModel.settleAccounts()
-            viewModel.personIsCheckedMap.value = isCheckedMap
-            goToNextPage()
-        }
-
         return binding.root
     }
 
     fun goToNextPage() {
+        viewModel.apply {
+            initMoney()
+            if(!settleAccounts()) {
+                Toast.makeText(context, "정산 설정이 완료되지 않은 활동이 있어요", Toast.LENGTH_SHORT).show()
+                return
+            }
+            //personIsCheckedMap.value = isCheckedMap
+        }
         activity?.supportFragmentManager?.commit {
             replace(R.id.settle_frame_layout, InputAccountNumberFragment())
             addToBackStack("")
