@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.settleaccounts.databinding.ViewHolderResultOfPeopleBinding
+import java.text.DecimalFormat
 
 class ResultAdapter(private  val peopleList: List<Pair<String, Double>>) : RecyclerView.Adapter<ResultAdapter.ViewHolder>() {
 
@@ -14,8 +15,13 @@ class ResultAdapter(private  val peopleList: List<Pair<String, Double>>) : Recyc
             binding.apply {
                 numberTextView.text = num.toString()
                 personNameTextView.text = peopleList[position].first
-                priceTextView.text = peopleList[position].second.toString()
+                priceTextView.text = setDecimalFormat(peopleList[position].second)
             }
+        }
+
+        fun setDecimalFormat(price: Double) : String {
+
+            return DecimalFormat("#,###.00").format(price)
         }
     }
 

@@ -15,6 +15,7 @@ import com.example.settleaccounts.databinding.DialogSetPeopleAndPriceBinding
 import com.example.settleaccounts.fragment.InputAndPickFragment
 import com.example.settleaccounts.model.Activity
 import com.example.settleaccounts.view_model.PersonIsCheckedMap
+import java.text.DecimalFormat
 
 class SetPeopleAndPriceDialog(
     private val peopleLiveData: MutableLiveData<HashMap<String, Double>>,
@@ -79,6 +80,6 @@ class SetPeopleAndPriceDialog(
 
     fun setActivityCostText() : String{
 
-        return "${selectedActivity.name} : ${selectedActivity.money}원"
+        return "${selectedActivity.name} : ${DecimalFormat("#,###").format(selectedActivity.money)}원"
     }
 }

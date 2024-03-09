@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.settleaccounts.model.Account
 import com.example.settleaccounts.model.Activity
+import java.text.DecimalFormat
 
 open class PeopleAndActivitiesDataViewModel: ViewModel() {
 
@@ -59,7 +60,7 @@ open class PeopleAndActivitiesDataViewModel: ViewModel() {
         for(list in activityList) {
 
             if(list.money != 0) {
-                val money = list.money / list.peopleList.size
+                val money = list.money.toDouble() / list.peopleList.size
 
                 for(peopleName in list.peopleList) {
                     val map = peopleMap.value!!
@@ -94,7 +95,7 @@ open class PeopleAndActivitiesDataViewModel: ViewModel() {
         str.append("위의 계좌로 입금을 부탁드려요" + "\n\n")
 
         for(person in _peopleMap.value?.toList()!!) {
-            str.append("${person.first} - ${person.second}원\n")
+            str.append("${person.first} - ${DecimalFormat("#,###.00").format(person.second)}원\n")
         }
 
         str.append("\n")
@@ -102,7 +103,7 @@ open class PeopleAndActivitiesDataViewModel: ViewModel() {
 
         for(activity in _activityList.value!!) {
 
-            str.append("${activity.name} - ${activity.money}원\n")
+            str.append("${activity.name} - ${DecimalFormat("#,###").format(activity.money)}원\n")
             str.append("참여 인원 \n")
             for(people in activity.peopleList) {
                 str.append("$people ")
