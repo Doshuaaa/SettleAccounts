@@ -45,12 +45,10 @@ class InputAndPickFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val isCheckedMap = viewModel.personIsCheckedMap.value
         binding = FragmentInputAndPickBinding.inflate(layoutInflater, container, false)
         binding.fragment = this
         binding.activityRecyclerView.apply {
-            adapter = ActivityAdapter(viewModel.activityList, viewModel.peopleMap,
-                isCheckedMap, this@InputAndPickFragment)
+            adapter = ActivityAdapter(viewModel.activityList, viewModel.peopleMap, this@InputAndPickFragment)
             layoutManager = LinearLayoutManager(context)
         }
 
@@ -64,7 +62,6 @@ class InputAndPickFragment : Fragment() {
                 Toast.makeText(context, "정산 설정이 완료되지 않은 활동이 있어요", Toast.LENGTH_SHORT).show()
                 return
             }
-            //personIsCheckedMap.value = isCheckedMap
         }
         activity?.supportFragmentManager?.commit {
             replace(R.id.settle_frame_layout, InputAccountNumberFragment())

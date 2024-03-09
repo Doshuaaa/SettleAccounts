@@ -84,7 +84,6 @@ class EditActivitiesNameFragment : Fragment() {
         }
         activitiesDataViewModel.apply {
             confirmActivitiesMap()
-            setPersonIsCheckedMap()
         }
 
         activity?.supportFragmentManager?.commit {

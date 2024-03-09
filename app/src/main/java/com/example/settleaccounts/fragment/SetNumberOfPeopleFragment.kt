@@ -46,7 +46,6 @@ class SetNumberOfPeopleFragment : Fragment() {
 
         binding = FragmentSetNumberOfPeopleBinding.inflate(inflater, container, false)
 
-
         var toast: Toast? = null
 
         viewModel.toastMessage.observe(viewLifecycleOwner, Observer { message ->
@@ -54,10 +53,6 @@ class SetNumberOfPeopleFragment : Fragment() {
             toast?.cancel()
             toast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
             toast?.show()
-        })
-
-        viewModel.numberOfPeople.observe(viewLifecycleOwner, Observer { peopleNum ->
-
         })
 
         binding.setNumberOfPeopleFragmentViewModel = viewModel

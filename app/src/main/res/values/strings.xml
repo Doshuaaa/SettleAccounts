@@ -12,4 +12,7 @@
     <string name="account_number">계좌번호</string>
     <string name="set_account_number_complete">입금 계좌 설정 완료</string>
     <string name="set_settle_accounts">정산 세팅하기</string>
+    <string name="all_select">모두 선택</string>
+    <string name="to_be_settled">정산할 비용</string>
+    <string name="settle_complete">정산 세팅 완료</string>
 </resources>

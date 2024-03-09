@@ -7,40 +7,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.settleaccounts.model.Account
 import com.example.settleaccounts.model.Activity
-import com.example.settleaccounts.model.PersonIsChecked
 
 open class PeopleAndActivitiesDataViewModel: ViewModel() {
 
     private val _peopleMap = MutableLiveData<HashMap<String, Double>>()
     private val _activityList = MutableLiveData<List<Activity>>()
 
-    private val _personIsCheckedMap = MutableLiveData<HashMap<String, PersonIsCheckedMap>>()
-
     val peopleMap get() = _peopleMap
     val activityList get() = _activityList
-    val personIsCheckedMap get() = _personIsCheckedMap
 
 
     private val tempPeopleMap: HashMap<String, Double> = hashMapOf()
     private val tempActivityList: ArrayList<Activity> = arrayListOf()
-
-
-    fun setPersonIsCheckedMap() {
-
-        val hashMap: HashMap<String, PersonIsCheckedMap> = hashMapOf()
-        val map: HashMap<String, Boolean> = hashMapOf()
-
-        for(person in _peopleMap.value?.toList()!!) {
-            map[person.first] = false
-        }
-
-        val list = _activityList.value!!
-        for(activity in list) {
-            hashMap[activity.name] = PersonIsCheckedMap(map.clone() as HashMap<String, Boolean>)
-        }
-
-        _personIsCheckedMap.value = hashMap
-    }
 
     fun addPerson(name: String): Boolean {
         if(!tempPeopleMap.contains(name)) {
@@ -120,19 +98,19 @@ open class PeopleAndActivitiesDataViewModel: ViewModel() {
         }
 
         str.append("\n")
-        str.append("* 정산 상세 내용 * \n")
+        str.append("* 정산 상세 내용 * \n\n")
 
         for(activity in _activityList.value!!) {
 
             str.append("${activity.name} - ${activity.money}원\n")
             str.append("참여 인원 \n")
             for(people in activity.peopleList) {
-                str.append("$people, ")
+                str.append("$people ")
             }
-            str.append("\n")
+            str.append("\n\n")
         }
 
+        str.delete(str.length - 2, str.length - 1)
         clipboardManager.setPrimaryClip(ClipData.newPlainText("label", str))
-
     }
 }

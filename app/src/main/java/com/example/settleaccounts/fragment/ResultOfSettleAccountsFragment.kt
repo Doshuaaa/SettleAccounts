@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.settleaccounts.R
 import com.example.settleaccounts.adapter.ResultAdapter
@@ -31,8 +30,8 @@ class ResultOfSettleAccountsFragment : Fragment() {
     private var param2: String? = null
 
     lateinit var binding: FragmentResultOfSettleAccountsBinding
-    val dataViewModel: PeopleAndActivitiesDataViewModel by activityViewModels()
-    val accountDataViewModel: AccountDataViewModel by activityViewModels()
+    private val dataViewModel: PeopleAndActivitiesDataViewModel by activityViewModels()
+    private val accountDataViewModel: AccountDataViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +56,7 @@ class ResultOfSettleAccountsFragment : Fragment() {
             accountViewModel = accountDataViewModel
             lifecycleOwner = viewLifecycleOwner
             fragment = this@ResultOfSettleAccountsFragment
-            dataViewModel = dataViewModel
+            peopleAndActivityViewModel = dataViewModel
         }
 
         return binding.root
